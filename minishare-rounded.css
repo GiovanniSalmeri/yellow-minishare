@@ -1,0 +1,37 @@
+.minishare {
+    visibility: hidden;
+}
+.minishare strong {
+    display: none;
+}
+.minishare a,
+.minishare a:hover,
+.minishare a:focus,
+.minishare a:active {
+    font-weight: bold;
+    font-size: 0.9em;
+    visibility: visible;
+    display: inline;
+    padding: 1px 10px;
+    margin-right: -0.5em;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.minishare a:hover,
+.minishare a:focus,
+.minishare a:active {
+    opacity: 0.5;
+}
+.minishare a.facebook { background-color: #3b5998 }
+.minishare a.flattr { background-color: #7ea352 }
+.minishare a.googleplus { background-color: #d34836 }
+.minishare a.linkedin { background-color: #0077b5 }
+.minishare a.email { background-color: #999999 }
+.minishare a.pinterest { background-color: #bd081c }
+.minishare a.reddit { background-color: #ff4500 }
+.minishare a.telegram { background-color: #0088cc }
+.minishare a.tumblr { background-color: #36465d }
+.minishare a.twitter { background-color: #55acee }
+.minishare a.whatsapp { background-color: #5cbe4a }
