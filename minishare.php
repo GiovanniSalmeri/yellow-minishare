@@ -12,6 +12,7 @@ class YellowMinishare {
         $this->yellow = $yellow;
         $this->yellow->config->setDefault("minishareServices", "facebook, twitter, linkedin, email");
         $this->yellow->config->setDefault("minishareStyle", "plain");
+        $this->yellow->config->setDefault("minishareSamePage", "0");
     }
     
     // Handle page content parsing of custom block
@@ -60,6 +61,7 @@ class YellowMinishare {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
             $style = $this->yellow->config->get("minishareStyle");
             if ($style != "plain") $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$pluginLocation}minishare-{$style}.css\" />\n";
+            if (!$this->yellow->config->get("minishareSamePage")) $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}minishare.js\"></script>\n";
         }
         if ($name=="links") {
             $output .= $this->onParseContentBlock($page, "minishare", "", true);
