@@ -1,8 +1,8 @@
 # Minishare plugin 0.7.6
 
-Featherlight and accessible social-sharing links.
+Featherlight and accessible social-sharing links in various styles.
 
-<p align="center"><img src="minishare-screenshot.png?raw=true" alt="Screenshot"></p>
+![Screenshot](minishare-screenshot.png?raw=true)
 
 ## How to install plugin
 
@@ -16,7 +16,7 @@ To uninstall delete the [plugin files](update.ini).
 
 Sharing links are automatically shown on blog and wiki pages. To show links on other pages, create a [minishare] shortcut.
 
-This plugin does not show social statistics, but is much lighter and a bit more accessible than [Shariff](https://github.com/schulle4u/yellow-plugin-shariff). For better results, it is recommended that you install also [Socialtags](https://github.com/schulle4u/yellow-plugin-socialtags) and configure correctly the page image.
+This plugin does not show social statistics, but is much lighter and a bit more accessible than [Shariff](https://github.com/schulle4u/yellow-plugin-shariff). For better results, it is recommended that you install also [Socialtags](https://github.com/schulle4u/yellow-plugin-socialtags) and configure `SocialtagsImage`.
 
 ## How to configure social links
 
@@ -24,6 +24,8 @@ The following settings can be configured in file `system/config/config.ini`:
 
 `MinishareServices` (default = `facebook, twitter, linkedin, email`) = comma-separated social sharing services (you can choose between `facebook`, `flattr`, `googleplus`, `linkedin`, `email`, `pinterest`, `reddit`, `telegram`, `tumblr`, `twitter`, `whatsapp`)  
 `MinishareStyle` = link style (you can choose between `plain`, `squared`, `rounded`) 
+
+If you want to add a new `fancy` style, simply write a `minishare-fancy.css`  file and put into the `system/plugin` folder. Do not modify the standard styles, since they will be overwritten in case of update of the plugin.
 
 ## Example
 
