@@ -28,7 +28,7 @@ class YellowMinishare {
                 'reddit' => 'https://reddit.com/submit?url=%s&title=%s',
                 'telegram' => 'https://t.me/share/url?url=%s',
                 'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl=%s',
-                'twitter' => 'https://twitter.com/intent/tweet?url=%s&text=%s',
+                'twitter' => 'https://twitter.com/intent/tweet?url=%s&text=%s%s',
                 'whatsapp' => 'whatsapp://send?text=%2$s%%20%1$s',
             ];
             $norm = [
@@ -41,9 +41,11 @@ class YellowMinishare {
             }
             $url = rawurlencode($this->yellow->page->getUrl());
             $title = rawurlencode($this->yellow->page->get("title"));
+            $twitteruser = $this->yellow->config->get("socialtagsTwitterUser");
+            $via = $twitteruser ? "&via=" . substr($twitteruser, 1) : ""; // no initial @
             foreach ($services as $service) {
                if ($serv_urls[$service]) {
-                   $links[] = "<a class=\"" . $service . "\" href=\"" . sprintf($serv_urls[$service], $url, $title) . "\">" . ($norm[$service] ? $norm[$service] : ucfirst($service)) . "</a>";
+                   $links[] = "<a class=\"" . $service . "\" href=\"" . sprintf($serv_urls[$service], $url, $title, $via) . "\">" . ($norm[$service] ? $norm[$service] : ucfirst($service)) . "</a>";
                }
             }
             $output = "<div class=\"minishare\"><strong>" . $this->yellow->text->get("minishareLabel") . "</strong> " . implode(" | ", $links) . "</div>\n";
