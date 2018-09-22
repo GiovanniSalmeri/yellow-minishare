@@ -1,6 +1,6 @@
 # Minishare plugin 0.7.6
 
-Featherlight and accessible social-sharing links in various styles.
+Featherlight and accessible social sharing links in various styles.
 
 ![Screenshot](minishare-screenshot.png?raw=true)
 
@@ -24,7 +24,7 @@ The following settings can be configured in file `system/config/config.ini`:
 
 `MinishareServices` (default = `facebook, twitter, linkedin, email`) = comma-separated social sharing services (you can choose between `facebook`, `flattr`, `googleplus`, `linkedin`, `email`, `pinterest`, `reddit`, `telegram`, `tumblr`, `twitter`, `whatsapp`)  
 `MinishareStyle` (default = `plain`) = link style (you can choose between `plain`, `squared`, `rounded`)  
-`MinishareSamePage` (default = `0`) = opens links in the same page instead than in a pop-up window  
+`MinishareSamePage` (default = `0`) = links open in the same page rather than in a pop-up window  
 
 If you want to add a new `fancy` style, simply write a `minishare-fancy.css`  file and put into the `system/plugin` folder. Do not modify the standard styles, since they will be overwritten in case of update of the plugin.
 
