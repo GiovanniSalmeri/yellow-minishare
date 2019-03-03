@@ -1,7 +1,5 @@
-.minishare {
-    visibility: hidden;
-}
-.minishare strong {
+.minishare strong,
+.minishare span {
     display: none;
 }
 .minishare a,
@@ -13,7 +11,7 @@
     visibility: visible;
     display: inline;
     padding: 1px 10px;
-    margin-right: -0.5em;
+    margin-right: 8px;
     text-decoration: none;
     color: white;
     border-radius: 3px;
@@ -26,7 +24,6 @@
 }
 .minishare a.facebook { background-color: #3b5998 }
 .minishare a.flattr { background-color: #7ea352 }
-.minishare a.googleplus { background-color: #d34836 }
 .minishare a.linkedin { background-color: #0077b5 }
 .minishare a.email { background-color: #999999 }
 .minishare a.pinterest { background-color: #bd081c }
