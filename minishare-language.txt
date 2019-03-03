@@ -1,0 +1,13 @@
+# Datenstrom Yellow language
+
+Language: en
+MinishareLabel: Share this article:
+
+Language: de
+MinishareLabel: Diese Artikel teilen:
+
+Language: fr
+MinishareLabel: Partager cet article:
+
+Language: it
+MinishareLabel: Condividi questo articolo:

@@ -1,6 +1,6 @@
-# Minishare extension 0.8.2
+# Minishare 0.8.2
 
-Featherlight and accessible social sharing links in various styles.
+Light and accessible social sharing links.
 
 ![Screenshot](minishare-screenshot.png?raw=true)
 

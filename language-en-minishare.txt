@@ -1,3 +1,0 @@
-Language: en
-# Additional text for minishare plugin
-MinishareLabel: Share this article:
