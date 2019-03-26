@@ -19,7 +19,7 @@ class YellowMinishare {
     // Handle page content parsing of custom block
     public function onParseContentShortcut($page, $name, $text, $shortcut) {
         $output = null;
-        if ($name=="minishare" && $shortcut) {
+        if ($name=="minishare" && ($type=="block" || $type=="inline")) {
             $serv_urls = [
                 'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=%s',
                 'flattr' => 'https://flattr.com/submit/auto?url=%s&title=%s&category=text',
