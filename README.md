@@ -26,7 +26,7 @@ The following settings can be configured in file `system/settings/system.ini`:
 `MinishareStyle` (default = `plain`) = link style (you can choose between `plain`, `squared`, `rounded`)  
 `MinishareSamePage` (default = `0`) = links open in the same page rather than in a pop-up window  
 
-If you want to add a new `fancy` style, simply write a `minishare-fancy.css`  file and put into the `system/settings` folder. Do not modify the standard styles, since they will be overwritten in case of update of the extension.
+If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and put into the `system/extensions` folder. Do not modify the standard styles, since they will be overwritten in case of update of the extension.
 
 ## Example
 

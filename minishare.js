@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //    }
 });
 // see https://www.sitepoint.com/social-media-button-links/
-function popupHandler(e) {
+var popupHandler = popupHandler || function(e) {
     e = e || window.event;
     var t = e.target || e.srcElement;
     var popup = window.open(t.href, "_blank", "width=600, height=450, left=0, top=0, menubar=0, toolbar=0, status=0");
