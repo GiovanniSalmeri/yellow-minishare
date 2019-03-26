@@ -11,3 +11,12 @@ MinishareLabel: Partager cet article:
 
 Language: it
 MinishareLabel: Condividi questo articolo:
+
+Language: es
+MinishareLabel: Compartir este artículo:
+
+Language: pt
+MinishareLabel: Compartilhe este artigo:
+
+Language: nl
+MinishareLabel: Deel dit artikel:
