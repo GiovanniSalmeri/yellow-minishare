@@ -4,7 +4,7 @@ Language: en
 MinishareLabel: Share this article:
 
 Language: de
-MinishareLabel: Diese Artikel teilen:
+MinishareLabel: Diesen Artikel teilen:
 
 Language: fr
 MinishareLabel: Partager cet article:
