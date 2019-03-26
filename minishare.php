@@ -17,7 +17,7 @@ class YellowMinishare {
     }
     
     // Handle page content parsing of custom block
-    public function onParseContentShortcut($page, $name, $text, $shortcut) {
+    public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
             $serv_urls = [
