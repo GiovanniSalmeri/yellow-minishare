@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowMinishare {
-    const VERSION = "0.8.3";
+    const VERSION = "0.8.9";
     const TYPE = "feature";
     public $yellow;         //access to API
     
@@ -59,7 +59,7 @@ class YellowMinishare {
     public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
-            $extensionLocation = $this->yellow->system->get("serverBase").$this->yellow->system->get("extensionLocation");
+            $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
             $style = $this->yellow->system->get("minishareStyle");
             if ($style != "plain") $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}minishare-{$style}.css\" />\n";
             if (!$this->yellow->system->get("minishareSamePage")) $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}minishare.js\"></script>\n";

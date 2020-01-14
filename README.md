@@ -1,4 +1,4 @@
-# Minishare 0.8.3
+# Minishare 0.8.9
 
 Light and accessible social sharing links.
 
