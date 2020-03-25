@@ -12,6 +12,7 @@ class YellowMinishare {
     public function onLoad($yellow) {
         $this->yellow = $yellow;
         $this->yellow->system->setDefault("minishareServices", "facebook, twitter, linkedin, email");
+        $this->yellow->system->setDefault("minishareTwitterUser", "");
         $this->yellow->system->setDefault("minishareStyle", "plain");
         $this->yellow->system->setDefault("minishareSamePage", "0");
     }
@@ -43,7 +44,7 @@ class YellowMinishare {
             }
             $url = rawurlencode($this->yellow->page->getUrl());
             $title = rawurlencode($this->yellow->page->get("title"));
-            $twitteruser = $this->yellow->system->get("socialtagsTwitterUser");
+            $twitteruser = $this->yellow->system->get("minishareTwitterUser");
             $via = $twitteruser ? "&via=" . substr($twitteruser, 1) : ""; // no initial @
             foreach ($services as $service) {
                if ($serv_urls[$service]) {
