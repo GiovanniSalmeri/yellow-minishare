@@ -1,32 +1,14 @@
-# Minishare 0.8.9
-
+Minishare 0.8.10
+================
 Light and accessible social sharing links.
 
 ![Screenshot](minishare-screenshot.png?raw=true)
-
-## How to install extension
-
-1. [Download and install Datenstrom Yellow](https://github.com/datenstrom/yellow/).
-2. [Download extension](../../archive/master.zip). If you are using Safari, right click and select 'Download file as'.
-3. Copy `master.zip` into your `system/extensions` folder.
-
-To uninstall delete the [extension files](extension.ini).
 
 ## How to add sharing links
 
 Sharing links are automatically shown on blog and wiki pages. To show links on other pages, create a [minishare] shortcut.
 
-This extension does not show social statistics, but is much lighter and a bit more accessible than [Shariff](https://github.com/schulle4u/yellow-extension-shariff). For better results, it is recommended that you install also [Socialtags](https://github.com/schulle4u/yellow-extensions-schulle4u/tree/master/socialtags) and configure `SocialtagsImage`.
-
-## How to configure social links
-
-The following settings can be configured in file `system/settings/system.ini`:
-
-`MinishareServices` (default = `facebook, twitter, linkedin, email`) = comma-separated social sharing services (you can choose between `facebook`, `flattr`, `linkedin`, `email`, `pinterest`, `reddit`, `telegram`, `tumblr`, `twitter`, `whatsapp`)  
-`MinishareStyle` (default = `plain`) = link style (you can choose between `plain`, `squared`, `rounded`)  
-`MinishareSamePage` (default = `0`) = links open in the same page rather than in a pop-up window  
-
-If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and put into the `system/extensions` folder. Do not modify the standard styles, since they will be overwritten in case of update of the extension.
+For better results, it is recommended that you install also [the Meta extension](https://github.com/datenstrom/yellow-extensions/tree/master/source/meta) (default in new Yellow installations) and configure `metaDefaultImage`.
 
 ## Example
 
@@ -34,6 +16,21 @@ Embedding social links in normal pages:
 
 `[minishare]`
 
+## Settings
+
+The following settings can be configured in file `system/extensions/yellow-system.ini`:
+
+`MinishareServices` (default = `facebook, twitter, linkedin, email`) = comma-separated social sharing services (you can choose between `facebook`, `flattr`, `linkedin`, `email`, `pinterest`, `reddit`, `telegram`, `tumblr`, `twitter`, `whatsapp`)  
+`MinishareTwitterUser` = Your site's twitter `@username`, will show up in tweets for shared posts.  
+`MinishareStyle` (default = `plain`) = link style (you can choose between `plain`, `squared`, `rounded`)  
+`MinishareSamePage` (default = `0`) = links open in the same page rather than in a pop-up window  
+
+If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and put into the `system/extensions` folder. Do not modify the standard styles, since they will be overwritten in case of update of the extension.
+
+## Installation
+
+[Download extension](https://github.com/GiovanniSalmeri/yellow-minishare/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
+
 ## Developer
 
-Giovanni Salmeri
+Giovanni Salmeri. [Get help](https://github.com/GiovanniSalmeri/yellow-minishare/issues).
