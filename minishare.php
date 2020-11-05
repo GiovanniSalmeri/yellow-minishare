@@ -1,11 +1,8 @@
 <?php
-// Minishare plugin
-// Copyright (c) 2018-2019 Giovanni Salmeri
-// This file may be used and distributed under the terms of the public license.
+// Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 class YellowMinishare {
-    const VERSION = "0.8.9";
-    const TYPE = "feature";
+    const VERSION = "0.8.10";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -38,7 +35,7 @@ class YellowMinishare {
                 // "googleplus" => "Google+",  // shutting down on 2019-04-02
                 "linkedin" => "LinkedIn",
             ];
-            $services = $this->yellow->toolbox->getTextArgs($text);
+            $services = $this->yellow->toolbox->getTextArguments($text);
             if (empty($services[0])) {
                 $services = array_map("trim", explode(",", $this->yellow->system->get("minishareServices")));
             }
@@ -51,7 +48,7 @@ class YellowMinishare {
                    $links[] = "<a class=\"" . $service . "\" href=\"" . sprintf($serv_urls[$service], $url, $title, $via) . "\">" . ($norm[$service] ? $norm[$service] : ucfirst($service)) . "</a>";
                }
             }
-            $output = "<div class=\"minishare\"><strong>" . $this->yellow->text->get("minishareLabel") . "</strong> " . implode("<span> | </span>", $links) . "</div>\n";
+            $output = "<div class=\"minishare\"><strong>" . $this->yellow->language->getText("minishareLabel") . "</strong> " . implode("<span> | </span>", $links) . "</div>\n";
         }
         return $output;
     }
