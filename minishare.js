@@ -1,3 +1,5 @@
+// Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
+
 document.addEventListener("DOMContentLoaded", function() {
     var links = document.getElementsByClassName("minishare")[0].getElementsByTagName('a');
     for (var i = 0; i < links.length; i++) {
