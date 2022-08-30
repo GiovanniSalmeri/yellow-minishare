@@ -23,7 +23,6 @@ The following settings can be configured in file `system/extensions/yellow-syste
 `MinishareServices` (default = `facebook, twitter, linkedin, email`) = comma-separated social sharing services (you can choose between `email`, `facebook`, `flipboard`, `linkedin`, `mastodon`, `pinterest`, `reddit`, `telegram`, `tumblr`, `twitter`, `vk`, `whatsapp`)  
 `MinishareTwitterUser` = your site's twitter `@username`, will show up in tweets for shared posts  
 `MinishareStyle` (default = `plain`) = link style (you can choose between `plain`, `squared`, `rounded`)  
-`MinishareSamePage` (default = `0`) = links open in the same page rather than in a new one  
 
 If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and put into the `system/extensions` folder.
 

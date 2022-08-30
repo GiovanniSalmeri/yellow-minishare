@@ -11,7 +11,6 @@ class YellowMinishare {
         $this->yellow->system->setDefault("minishareServices", "facebook, twitter, linkedin, email");
         $this->yellow->system->setDefault("minishareTwitterUser", "");
         $this->yellow->system->setDefault("minishareStyle", "plain");
-        $this->yellow->system->setDefault("minishareSamePage", "0");
     }
     
     // Handle page content parsing of custom block
@@ -48,12 +47,11 @@ class YellowMinishare {
                 "{title}"=>rawurlencode($this->yellow->page->get("title")),
                 "{via}"=>$twitteruser ? "&via=".substr($twitteruser, 1) : "", // no initial @
             ];
-            $target = $this->yellow->system->get("minishareSamePage") ? "" : " target=\"_blank\""; 
             foreach ($services as $service) {
                if (isset($shareUrls[$service])) {
                     $isCustom = strpos($shareUrls[$service], "___custom___")!==false;
                     $dataCustom = $isCustom ? " data-prompt=\"".$this->yellow->language->getText("minishareCustom".ucfirst($service))."\"" : "";
-                    $links[] = "<a class=\"minishare-".$service."\" href=\"".$this->interpolate($shareUrls[$service], $values)."\"".(substr($shareUrls[$service], 0, 8)=="https://" ? $target : "").$dataCustom."\">".($styling[$service] ?? ucfirst($service))."</a>";
+                    $links[] = "<a class=\"minishare-".$service."\" href=\"".$this->interpolate($shareUrls[$service], $values)."\"".$dataCustom."\">".($styling[$service] ?? ucfirst($service))."</a>";
                }
             }
             $output = "<div class=\"minishare\"><strong>".$this->yellow->language->getText("minishareLabel")."</strong> ".implode("<span> | </span>", $links)."</div>\n";
