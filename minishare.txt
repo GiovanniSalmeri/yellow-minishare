@@ -1,22 +1,29 @@
-# Datenstrom Yellow language
+# Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 Language: en
 MinishareLabel: Share this article:
+MinishareCustomMastodon: Your Mastodon instance
 
 Language: de
 MinishareLabel: Diesen Artikel teilen:
+MinishareCustomMastodon: Deine Mastodon-Instanz
 
 Language: fr
 MinishareLabel: Partager cet article:
+MinishareCustomMastodon: Votre instance Mastodon
 
 Language: it
 MinishareLabel: Condividi questo articolo:
+MinishareCustomMastodon: La tua istanza Mastodon
 
 Language: es
 MinishareLabel: Compartir este artículo:
+MinishareCustomMastodon: Tu instancia Mastodon
 
 Language: pt
 MinishareLabel: Compartilhe este artigo:
+MinishareCustomMastodon: Su instância Mastodon
 
 Language: nl
 MinishareLabel: Deel dit artikel:
+MinishareCustomMastodon: Je Mastodon-instance

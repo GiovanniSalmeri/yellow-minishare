@@ -1,32 +1,25 @@
 // Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
+"use strict";
 document.addEventListener("DOMContentLoaded", function() {
-    var links = document.getElementsByClassName("minishare")[0].getElementsByTagName('a');
-    for (var i = 0; i < links.length; i++) {
-        if (/^https?:\/\//.test(links[i].href)) { // ignore mailto: ecc.
-            links[i].addEventListener("click", popupHandler);
+    var minishares = document.getElementsByClassName("minishare");
+    Array.from(minishares).forEach(function(minishare) {
+        var links = minishare.getElementsByTagName("a");
+        Array.from(links).forEach(function(link){
+            if ("prompt" in link.dataset) {
+                link.addEventListener("click", makeCustomUrl);
+            }
+        });
+    });
+
+    function makeCustomUrl(e) {
+        var promptLabel = e.target.dataset.prompt;
+        var custom = prompt(promptLabel);
+        if (custom===null || custom.trim()==="") {
+            e.preventDefault();
+        } else {
+            custom = custom.trim().replace(/^https?:\/\//, "");
+            e.target.href = e.target.href.replace("___custom___", custom);
         }
     }
-//    If more than one minishare for page is allowed:
-//    var minishare = document.getElementsByClassName("minishare");
-//    for (var j = 0; j < minishare.length; j++) {
-//        var links = minishare[j].getElementsByTagName('a');
-//        for (var i = 0; i < links.length; i++) {
-//            if (/^https?:\/\//.test(links[i].href)) {
-//                links[i].addEventListener("click", popupHandler);
-//            }
-//        }
-//    }
 });
-// see https://www.sitepoint.com/social-media-button-links/
-var popupHandler = popupHandler || function(e) {
-    e = e || window.event;
-    var t = e.target || e.srcElement;
-    var popup = window.open(t.href, "_blank", "width=600, height=450, left=0, top=0, menubar=0, toolbar=0, status=0");
-    if (popup) {
-        if (popup.focus) popup.focus();
-        if (e.preventDefault) e.preventDefault();
-        e.returnValue = false;
-    }
-    return !!popup;
-}

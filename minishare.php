@@ -2,7 +2,7 @@
 // Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 class YellowMinishare {
-    const VERSION = "0.8.10";
+    const VERSION = "0.8.20";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -18,39 +18,52 @@ class YellowMinishare {
     public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
-            $serv_urls = [
-                'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=%s',
-                'flattr' => 'https://flattr.com/submit/auto?url=%s&title=%s&category=text',
-                // 'googleplus' => 'https://plus.google.com/share?url=%s', // shutting down on 2019-04-02
-                'linkedin' => 'https://www.linkedin.com/shareArticle?mini=true&url=%s',
-                'email' => 'mailto:?subject=%2$s&body=%1$s',
-                'pinterest' => 'https://www.pinterest.com/pin/create/link/?url=%s',
-                'reddit' => 'https://reddit.com/submit?url=%s&title=%s',
-                'telegram' => 'https://t.me/share/url?url=%s',
-                'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl=%s',
-                'twitter' => 'https://twitter.com/intent/tweet?url=%s&text=%s%s',
-                'whatsapp' => 'whatsapp://send?text=%2$s%%20%1$s',
+            $shareUrls = [
+                'email' => 'mailto:?subject={title}&body={url}',
+                'facebook' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
+                'flipboard' => 'https://share.flipboard.com/bookmarklet/popout?v=2&title={title}&url={url}',
+                'linkedin' => 'https://www.linkedin.com/sharing/share-offsite/?url={url}',
+                'mastodon' => 'https://___custom___/share?text={title}%20{url}',
+                'pinterest' => 'https://www.pinterest.com/pin/create/link/?url={url}',
+                'reddit' => 'https://reddit.com/submit?url={url}&title={title}',
+                'telegram' => 'https://t.me/share/url?url={url}',
+                'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl={url}',
+                'twitter' => 'https://twitter.com/intent/tweet?url={url}&text={title}{via}',
+                'vk' => 'http://vk.com/share.php?url={url}&title={title}&comment={text}',
+                'whatsapp' => 'whatsapp://send?text={title}%20{url}',
+                // see others: https://github.com/bradvin/social-share-urls
             ];
-            $norm = [
-                // "googleplus" => "Google+",  // shutting down on 2019-04-02
+            $styling = [
                 "linkedin" => "LinkedIn",
+                "whatsapp" => "WhatsApp",
+                "vk" => "VK",
             ];
             $services = $this->yellow->toolbox->getTextArguments($text);
             if (empty($services[0])) {
-                $services = array_map("trim", explode(",", $this->yellow->system->get("minishareServices")));
+                $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             }
-            $url = rawurlencode($this->yellow->page->getUrl());
-            $title = rawurlencode($this->yellow->page->get("title"));
+            $values = [];
+            $values["{url}"] = rawurlencode($this->yellow->page->getUrl());
+            $values["{title}"] = rawurlencode($this->yellow->page->get("title"));
             $twitteruser = $this->yellow->system->get("minishareTwitterUser");
-            $via = $twitteruser ? "&via=" . substr($twitteruser, 1) : ""; // no initial @
+            $values["{via}"] = $twitteruser ? "&via=".substr($twitteruser, 1) : ""; // no initial @
+            $target = $this->yellow->system->get("minishareSamePage") ? "" : " target=\"_blank\""; 
             foreach ($services as $service) {
-               if ($serv_urls[$service]) {
-                   $links[] = "<a class=\"" . $service . "\" href=\"" . sprintf($serv_urls[$service], $url, $title, $via) . "\">" . ($norm[$service] ? $norm[$service] : ucfirst($service)) . "</a>";
+               if (isset($shareUrls[$service])) {
+                    $isCustom = strpos($shareUrls[$service], "___custom___")!==false;
+                    $dataCustom = $isCustom ? " data-prompt=\"".$this->yellow->language->getText("minishareCustom".ucfirst($service))."\"" : "";
+                    $links[] = "<a class=\"minishare-".$service."\" href=\"".$this->interpolate($shareUrls[$service], $values)."\"".(substr($shareUrls[$service], 0, 8)=="https://" ? $target : "").$dataCustom."\">".($styling[$service] ?? ucfirst($service))."</a>";
                }
             }
-            $output = "<div class=\"minishare\"><strong>" . $this->yellow->language->getText("minishareLabel") . "</strong> " . implode("<span> | </span>", $links) . "</div>\n";
+            $output = "<div class=\"minishare\"><strong>".$this->yellow->language->getText("minishareLabel")."</strong> ".implode("<span> | </span>", $links)."</div>\n";
         }
         return $output;
+    }
+
+    // Interpolate string from associative array
+    private function interpolate($string, $values) {
+        $string = str_replace(array_keys($values), $values, $string);
+        return $string;
     }
 
     // Handle page extra data
@@ -59,8 +72,8 @@ class YellowMinishare {
         if ($name=="header") {
             $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
             $style = $this->yellow->system->get("minishareStyle");
-            if ($style != "plain") $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}minishare-{$style}.css\" />\n";
-            if (!$this->yellow->system->get("minishareSamePage")) $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}minishare.js\"></script>\n";
+            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}minishare-{$style}.css\" />\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}minishare.js\"></script>\n";
         }
         if ($name=="links") {
             $output .= $this->onParseContentShortcut($page, "minishare", "", true);
