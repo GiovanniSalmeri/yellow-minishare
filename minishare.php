@@ -42,11 +42,12 @@ class YellowMinishare {
             if (empty($services[0])) {
                 $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             }
-            $values = [];
-            $values["{url}"] = rawurlencode($this->yellow->page->getUrl());
-            $values["{title}"] = rawurlencode($this->yellow->page->get("title"));
             $twitteruser = $this->yellow->system->get("minishareTwitterUser");
-            $values["{via}"] = $twitteruser ? "&via=".substr($twitteruser, 1) : ""; // no initial @
+            $values = [
+                "{url}"=>rawurlencode($this->yellow->page->getUrl()),
+                "{title}"=>rawurlencode($this->yellow->page->get("title")),
+                "{via}"=>$twitteruser ? "&via=".substr($twitteruser, 1) : "", // no initial @
+            ];
             $target = $this->yellow->system->get("minishareSamePage") ? "" : " target=\"_blank\""; 
             foreach ($services as $service) {
                if (isset($shareUrls[$service])) {
