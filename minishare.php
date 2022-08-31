@@ -28,7 +28,7 @@ class YellowMinishare {
                 'telegram' => 'https://t.me/share/url?url={url}',
                 'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl={url}',
                 'twitter' => 'https://twitter.com/intent/tweet?url={url}&text={title}{via}',
-                'vk' => 'http://vk.com/share.php?url={url}&title={title}&comment={text}',
+                'vk' => 'http://vk.com/share.php?url={url}&title={title}',
                 'whatsapp' => 'whatsapp://send?text={title}%20{url}',
                 // see others: https://github.com/bradvin/social-share-urls
             ];
