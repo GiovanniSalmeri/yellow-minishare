@@ -50,8 +50,8 @@ class YellowMinishare {
             foreach ($services as $service) {
                if (isset($shareUrls[$service])) {
                     $isCustom = strpos($shareUrls[$service], "___custom___")!==false;
-                    $dataCustom = $isCustom ? " data-prompt=\"".$this->yellow->language->getText("minishareCustom".ucfirst($service))."\"" : "";
-                    $links[] = "<a class=\"minishare-".$service."\" href=\"".$this->interpolate($shareUrls[$service], $values)."\"".$dataCustom."\">".($styling[$service] ?? ucfirst($service))."</a>";
+                    $dataCustom = $isCustom ? " data-prompt=\"".htmlspecialchars($this->yellow->language->getText("minishareCustom".ucfirst($service)))."\"" : "";
+                    $links[] = "<a class=\"minishare-".$service."\" href=\"".htmlspecialchars($this->interpolate($shareUrls[$service], $values))."\"".(substr($shareUrls[$service], 0, 8)=="https://" ? $target : "").$dataCustom."\">".htmlspecialchars($styling[$service] ?? ucfirst($service))."</a>";
                }
             }
             $output = "<div class=\"minishare\"><strong>".$this->yellow->language->getText("minishareLabel")."</strong> ".implode("<span> | </span>", $links)."</div>\n";
