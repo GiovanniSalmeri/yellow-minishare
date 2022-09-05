@@ -2,7 +2,7 @@ Minishare 0.8.20
 ================
 Social sharing links.
 
-<p align="center"><img src="minishare-screenshot.png?raw=true" width="795" height="836" alt="Screenshot"></p>
+<p align="center"><img src="minishare-screenshot.png?raw=true" alt="Screenshot"></p>
 
 ## How to add sharing links
 
