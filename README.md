@@ -32,4 +32,4 @@ If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and 
 
 ## Developer
 
-Giovanni Salmeri. [Get help](https://github.com/GiovanniSalmeri/yellow-minishare/issues).
+Giovanni Salmeri. [Get help](https://datenstrom.se/yellow/help/)
