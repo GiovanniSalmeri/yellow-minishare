@@ -28,7 +28,7 @@ If you want to add a new `fancy` style, write a `minishare-fancy.css`  file and 
 
 ## Installation
 
-[Download extension](https://github.com/GiovanniSalmeri/yellow-minishare/archive/master.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
+[Download extension](https://github.com/GiovanniSalmeri/yellow-minishare/archive/main.zip) and copy zip file into your `system/extensions` folder. Right click if you use Safari.
 
 ## Developer
 
