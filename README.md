@@ -8,7 +8,7 @@ Social sharing links.
 
 Sharing links are automatically shown on blog and wiki pages. To show links on other pages, create a [minishare] shortcut.
 
-For better results, install also [the Meta extension](https://github.com/datenstrom/yellow-extensions/tree/master/source/meta) and configure `metaDefaultImage`.
+For better results, install also [the Meta extension](https://github.com/annaesvensson/yellow-meta) and configure `metaDefaultImage`.
 
 ## Example
 
