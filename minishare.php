@@ -60,7 +60,7 @@ class YellowMinishare {
                 "vk" => "VK",
             ];
             $services = $this->yellow->toolbox->getTextArguments($text);
-            if (empty($services[0])) {
+            if (is_string_empty($services[0])) {
                 $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             }
             $twitteruser = $this->yellow->system->get("minishareTwitterUser");
