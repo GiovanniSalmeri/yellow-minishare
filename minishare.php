@@ -2,7 +2,7 @@
 // Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 class YellowMinishare {
-    const VERSION = "0.8.20";
+    const VERSION = "0.8.21";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -11,6 +11,28 @@ class YellowMinishare {
         $this->yellow->system->setDefault("minishareServices", "facebook, twitter, linkedin, email");
         $this->yellow->system->setDefault("minishareTwitterUser", "");
         $this->yellow->system->setDefault("minishareStyle", "plain");
+        $this->yellow->language->setDefaults(array(
+            "Language: en",
+            "MinishareLabel: Share this article:",
+            "MinishareCustomMastodon: Your Mastodon instance",
+            "Language: de",
+            "MinishareLabel: Diesen Artikel teilen:",
+            "MinishareCustomMastodon: Deine Mastodon-Instanz",
+            "Language: fr",
+            "MinishareLabel: Partager cet article:",
+            "MinishareCustomMastodon: Votre instance Mastodon",
+            "Language: it",
+            "MinishareLabel: Condividi questo articolo:",
+            "MinishareCustomMastodon: La tua istanza Mastodon",
+            "Language: es",
+            "MinishareLabel: Compartir este artículo:",
+            "MinishareCustomMastodon: Tu instancia Mastodon",
+            "Language: pt",
+            "MinishareLabel: Compartilhe este artigo:",
+            "MinishareCustomMastodon: Su instância Mastodon",
+            "Language: nl",
+            "MinishareLabel: Deel dit artikel:",
+            "MinishareCustomMastodon: Je Mastodon-instance"));
     }
     
     // Handle page content parsing of custom block
