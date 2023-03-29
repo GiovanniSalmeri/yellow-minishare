@@ -96,8 +96,8 @@ class YellowMinishare {
             $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}minishare-{$style}.css\" />\n";
             $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}minishare.js\"></script>\n";
         }
-        if ($name=="links") {
-            $output .= $this->onParseContentShortcut($page, "minishare", "", true);
+        if ($name=="minishare" || $name=="links") {
+            $output = $this->onParseContentShortcut($page, "minishare", "", "block");
         }
         return $output;
     }
