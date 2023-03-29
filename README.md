@@ -10,7 +10,7 @@ Social sharing links.
 
 ## How to show sharing links
 
-This extension adds sharing links for popular social media sites. Links are shown on blog and wiki pages. To show links on other pages use a `[minishare]` shortcut. It's recommended to install the [meta extension](https://github.com/annaesvensson/yellow-meta), it allows you to set additional meta data for social media sites.
+This extension adds sharing links for popular social media sites. Links are shown on blog pages. To show links on other pages use a `[minishare]` shortcut. It's recommended to install the [meta extension](https://github.com/annaesvensson/yellow-meta), it allows you to set additional meta data for social media sites.
 
 If you want to customise sharing links with CSS, write a `minishare-custom.css` file, put it into your `system/extensions` folder, open file `system/extensions/yellow-system.ini` and change `MinishareStyle: custom`. Another option to customise sharing links with CSS is editing the files in your `system/themes` folder. It's recommended to use the later option.
 
