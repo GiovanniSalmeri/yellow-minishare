@@ -32,7 +32,8 @@ class YellowMinishare {
             "MinishareCustomMastodon: Su instância Mastodon",
             "Language: nl",
             "MinishareLabel: Deel dit artikel:",
-            "MinishareCustomMastodon: Je Mastodon-instance"));
+            "MinishareCustomMastodon: Je Mastodon-instance"
+        ));
     }
     
     // Handle page content parsing of custom block
