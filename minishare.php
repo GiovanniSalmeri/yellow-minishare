@@ -66,7 +66,12 @@ class YellowMinishare {
             }
             $twitteruser = $this->yellow->system->get("minishareTwitterUser");
             $values = [
-                "{url}"=>rawurlencode($this->yellow->page->getUrl()),
+                "{url}"=>rawurlencode($this->yellow->lookup->normaliseUrl(
+                    $this->yellow->system->get("coreServerScheme"),
+                    $this->yellow->system->get("coreServerAddress"),
+                    $this->yellow->system->get("coreServerBase"),
+                    $page->location
+                )),
                 "{title}"=>rawurlencode($this->yellow->page->get("title")),
                 "{via}"=>$twitteruser ? "&via=".substr($twitteruser, 1) : "", // no initial @
             ];
