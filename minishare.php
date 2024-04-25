@@ -2,7 +2,7 @@
 // Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 class YellowMinishare {
-    const VERSION = "0.8.21";
+    const VERSION = "0.9.1";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -37,7 +37,7 @@ class YellowMinishare {
     }
     
     // Handle page content parsing of custom block
-    public function onParseContentShortcut($page, $name, $text, $type) {
+    public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
             $shareUrls = [
@@ -66,12 +66,7 @@ class YellowMinishare {
             }
             $twitteruser = $this->yellow->system->get("minishareTwitterUser");
             $values = [
-                "{url}"=>rawurlencode($this->yellow->lookup->normaliseUrl(
-                    $this->yellow->system->get("coreServerScheme"),
-                    $this->yellow->system->get("coreServerAddress"),
-                    $this->yellow->system->get("coreServerBase"),
-                    $page->location
-                )),
+                "{url}"=>rawurlencode($this->yellow->page->getUrl(true)),
                 "{title}"=>rawurlencode($this->yellow->page->get("title")),
                 "{via}"=>$twitteruser ? "&via=".substr($twitteruser, 1) : "", // no initial @
             ];
@@ -97,13 +92,13 @@ class YellowMinishare {
     public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
-            $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
+            $assetLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreAssetLocation");
             $style = $this->yellow->system->get("minishareStyle");
-            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$extensionLocation}minishare-{$style}.css\" />\n";
-            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$extensionLocation}minishare.js\"></script>\n";
+            $output .= "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$assetLocation}minishare-{$style}.css\" />\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$assetLocation}minishare.js\"></script>\n";
         }
         if ($name=="minishare" || $name=="link") {
-            $output = $this->onParseContentShortcut($page, "minishare", "", "block");
+            $output = $this->onParseContentElement($page, "minishare", "", "", "block");
         }
         return $output;
     }
