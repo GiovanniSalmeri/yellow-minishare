@@ -36,7 +36,7 @@ class YellowMinishare {
         ));
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content element
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
