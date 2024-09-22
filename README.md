@@ -44,8 +44,8 @@ Layout file with sharing links:
 Configuring different sharing services in the settings:
 
 ```
-MinishareServices: facebook, twitter, linkedin, email
-MinishareServices: mastodon, facebook, twitter, linkedin, email
+MinishareServices: facebook, x, linkedin, email
+MinishareServices: mastodon, facebook, x, linkedin, email
 ```
 
 ## Settings
@@ -53,12 +53,13 @@ MinishareServices: mastodon, facebook, twitter, linkedin, email
 The following settings can be configured in file `system/extensions/yellow-system.ini`:
 
 `MinishareServices` = social sharing services, [supported sharing services](#settings-services)  
-`MinishareTwitterUser` = your Twitter user name, e.g. `@dog_feelings`  
+`MinishareXUser` = your X user name, e.g. `@dog_feelings`  
 `MinishareStyle` = link style, e.g. `plain`, `squared`, `rounded`  
 
 <a id="settings-services"></a>The following sharing services are supported:
 
 `email` = share via email  
+`bluesky` = share on [Bluesky](https://bsky.app)  
 `facebook` = share on [Facebook](https://facebook.com)  
 `flipboard` = share on [Flipboard](https://flipboard.com)  
 `linkedin` = share on [LinkedIn](https://linkedin.com)  
@@ -67,7 +68,7 @@ The following settings can be configured in file `system/extensions/yellow-syste
 `reddit` = share on [Reddit](https://reddit.com)  
 `telegram` = share on [Telegram](https://telegram.org)  
 `tumblr` = share on [Tumblr](https://tumblr.com)  
-`twitter` = share on [Twitter](https://twitter.com)  
+`x` = share on [X](https://x.com)  
 `vk` = share on [VK](https://vk.com)  
 `whatsapp` = share on [Whatsapp](https://whatsapp.com)  
 

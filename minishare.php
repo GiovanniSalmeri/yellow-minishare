@@ -8,8 +8,8 @@ class YellowMinishare {
     // Handle initialisation
     public function onLoad($yellow) {
         $this->yellow = $yellow;
-        $this->yellow->system->setDefault("minishareServices", "facebook, twitter, linkedin, email");
-        $this->yellow->system->setDefault("minishareTwitterUser", "");
+        $this->yellow->system->setDefault("minishareServices", "facebook, x, linkedin, email");
+        $this->yellow->system->setDefault("minishareXUser", "");
         $this->yellow->system->setDefault("minishareStyle", "plain");
         $this->yellow->language->setDefaults(array(
             "Language: en",
@@ -41,6 +41,7 @@ class YellowMinishare {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
             $shareUrls = [
+                'bluesky' => 'https://bsky.app/intent/compose?text={title}%20{url}',
                 'email' => 'mailto:?subject={title}&body={url}',
                 'facebook' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
                 'flipboard' => 'https://share.flipboard.com/bookmarklet/popout?v=2&title={title}&url={url}',
@@ -50,7 +51,7 @@ class YellowMinishare {
                 'reddit' => 'https://reddit.com/submit?url={url}&title={title}',
                 'telegram' => 'https://t.me/share/url?url={url}',
                 'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl={url}',
-                'twitter' => 'https://twitter.com/intent/tweet?url={url}&text={title}{via}',
+                'x' => 'https://x.com/intent/tweet?url={url}&text={title}{via}',
                 'vk' => 'http://vk.com/share.php?url={url}&title={title}',
                 'whatsapp' => 'whatsapp://send?text={title}%20{url}',
                 // see others: https://github.com/bradvin/social-share-urls
@@ -59,16 +60,17 @@ class YellowMinishare {
                 "linkedin" => "LinkedIn",
                 "whatsapp" => "WhatsApp",
                 "vk" => "VK",
+                "x" => "X",
             ];
             $services = $this->yellow->toolbox->getTextArguments($text);
             if (is_string_empty($services[0])) {
                 $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             }
-            $twitteruser = $this->yellow->system->get("minishareTwitterUser");
+            $xUser = $this->yellow->system->get("minishareXUser");
             $values = [
                 "{url}"=>rawurlencode($this->yellow->page->getUrl(true)),
                 "{title}"=>rawurlencode($this->yellow->page->get("title")),
-                "{via}"=>$twitteruser ? "&via=".substr($twitteruser, 1) : "", // no initial @
+                "{via}"=>$xUser ? "&via=".substr($xUser, 1) : "", // no initial @
             ];
             foreach ($services as $service) {
                if (isset($shareUrls[$service])) {

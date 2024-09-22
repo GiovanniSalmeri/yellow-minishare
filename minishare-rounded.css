@@ -25,15 +25,17 @@
     opacity: 0.5;
     box-shadow: none;
 }
+.minishare a.minishare-bluesky { background-color: #1080f5 }
 .minishare a.minishare-email { background-color: #ed1c24 }
 .minishare a.minishare-facebook { background-color: #3b5998 }
-.minishare a.minishare-flattr { background-color: #7ea352 }
+.minishare a.minishare-flipboard { background-color: #f52828 }
 .minishare a.minishare-linkedin { background-color: #0077b5 }
 .minishare a.minishare-mastodon { background-color: #595aff }
 .minishare a.minishare-pinterest { background-color: #bd081c }
 .minishare a.minishare-reddit { background-color: #ff4500 }
 .minishare a.minishare-telegram { background-color: #0088cc }
 .minishare a.minishare-tumblr { background-color: #36465d }
-.minishare a.minishare-twitter { background-color: #55acee }
+.minishare a.minishare-x { background-color: #000000 }
+.minishare a.minishare-vk { background-color: #0077ff }
 .minishare a.minishare-whatsapp { background-color: #5cbe4a }
 .minishare a /* fallback */ { background-color: #999999 }
