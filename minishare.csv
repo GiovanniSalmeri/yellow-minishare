@@ -20,7 +20,6 @@ Reddit,https://reddit.com/submit?url=@url&title=@title
 Renren,http://widget.renren.com/dialog/share?resourceUrl=@url&srcUrl=@url&title=@title
 Skype,https://web.skype.com/share?url=@url&text=@title
 Telegram,https://t.me/share/url?url=@url
-Tumblr,http://tumblr.com/widgets/share/tool?canonicalUrl=@url&title=@title
 Tumblr,https://www.tumblr.com/widgets/share/tool?canonicalUrl=@url&title=@title
 VK,http://vk.com/share.php?url=@url&title=@title
 Weibo,http://service.weibo.com/share/share.php?url=@url&appkey=&title=@title
