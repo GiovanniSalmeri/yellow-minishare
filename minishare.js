@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function makeCustomUrl(e) {
         var promptLabel = e.target.dataset.prompt;
-        var custom = prompt(promptLabel);
-        if (custom===null || custom.trim()==="") {
+        var instance = prompt(promptLabel);
+        if (instance===null || instance.trim()==="") {
             e.preventDefault();
         } else {
-            custom = custom.trim().replace(/^https?:\/\//, "");
-            e.target.href = e.target.href.replace("___custom___", custom);
+            instance = instance.trim().replace(/^https?:\/\//, "");
+            e.target.href = e.target.href.replace("___instance___", instance);
         }
     }
 });

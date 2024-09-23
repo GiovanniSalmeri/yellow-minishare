@@ -2,37 +2,36 @@
 // Minishare extension, https://github.com/GiovanniSalmeri/yellow-minishare
 
 class YellowMinishare {
-    const VERSION = "0.9.1";
+    const VERSION = "0.9.2";
     public $yellow;         //access to API
     
     // Handle initialisation
     public function onLoad($yellow) {
         $this->yellow = $yellow;
-        $this->yellow->system->setDefault("minishareServices", "facebook, x, linkedin, email");
-        $this->yellow->system->setDefault("minishareXUser", "");
+        $this->yellow->system->setDefault("minishareServices", "facebook, whatsapp, linkedin, telegram, email");
         $this->yellow->system->setDefault("minishareStyle", "plain");
         $this->yellow->language->setDefaults(array(
             "Language: en",
             "MinishareLabel: Share this article:",
-            "MinishareCustomMastodon: Your Mastodon instance",
+            "MinishareCustom: Your @service instance",
             "Language: de",
             "MinishareLabel: Diesen Artikel teilen:",
-            "MinishareCustomMastodon: Deine Mastodon-Instanz",
+            "MinishareCustom: Deine @service-Instanz",
             "Language: fr",
             "MinishareLabel: Partager cet article:",
-            "MinishareCustomMastodon: Votre instance Mastodon",
+            "MinishareCustom: Votre instance @service",
             "Language: it",
             "MinishareLabel: Condividi questo articolo:",
-            "MinishareCustomMastodon: La tua istanza Mastodon",
+            "MinishareCustom: La tua istanza @service",
             "Language: es",
             "MinishareLabel: Compartir este artículo:",
-            "MinishareCustomMastodon: Tu instancia Mastodon",
+            "MinishareCustom: Tu instancia @service",
             "Language: pt",
             "MinishareLabel: Compartilhe este artigo:",
-            "MinishareCustomMastodon: Su instância Mastodon",
+            "MinishareCustom: Su instância @service",
             "Language: nl",
             "MinishareLabel: Deel dit artikel:",
-            "MinishareCustomMastodon: Je Mastodon-instance"
+            "MinishareCustom: Je @service-instance"
         ));
     }
     
@@ -40,54 +39,29 @@ class YellowMinishare {
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
-            $shareUrls = [
-                'bluesky' => 'https://bsky.app/intent/compose?text={title}%20{url}',
-                'email' => 'mailto:?subject={title}&body={url}',
-                'facebook' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
-                'flipboard' => 'https://share.flipboard.com/bookmarklet/popout?v=2&title={title}&url={url}',
-                'linkedin' => 'https://www.linkedin.com/sharing/share-offsite/?url={url}',
-                'mastodon' => 'https://___custom___/share?text={title}%20{url}',
-                'pinterest' => 'https://www.pinterest.com/pin/create/link/?url={url}',
-                'reddit' => 'https://reddit.com/submit?url={url}&title={title}',
-                'telegram' => 'https://t.me/share/url?url={url}',
-                'tumblr' => 'http://tumblr.com/widgets/share/tool?canonicalUrl={url}',
-                'x' => 'https://x.com/intent/tweet?url={url}&text={title}{via}',
-                'vk' => 'http://vk.com/share.php?url={url}&title={title}',
-                'whatsapp' => 'whatsapp://send?text={title}%20{url}',
-                // see others: https://github.com/bradvin/social-share-urls
-            ];
-            $styling = [
-                "linkedin" => "LinkedIn",
-                "whatsapp" => "WhatsApp",
-                "vk" => "VK",
-                "x" => "X",
-            ];
-            $services = $this->yellow->toolbox->getTextArguments($text);
-            if (is_string_empty($services[0])) {
-                $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
+            $shareUrls = [];
+            $csvLines = file($this->yellow->system->get("coreExtensionDirectory")."minishare.csv");
+            foreach ($csvLines as $csvLine) {
+                if (trim($csvLine)=="") continue;
+                $items = explode(",", $csvLine, 2);
+                $shareUrls[strtolower($items[0])] = $items;
             }
-            $xUser = $this->yellow->system->get("minishareXUser");
+            $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             $values = [
-                "{url}"=>rawurlencode($this->yellow->page->getUrl(true)),
-                "{title}"=>rawurlencode($this->yellow->page->get("title")),
-                "{via}"=>$xUser ? "&via=".substr($xUser, 1) : "", // no initial @
+                "@url"=>rawurlencode($this->yellow->page->getUrl(true)),
+                "@title"=>rawurlencode($this->yellow->page->get("title")),
             ];
+            $links = [];
             foreach ($services as $service) {
                if (isset($shareUrls[$service])) {
-                    $isCustom = strpos($shareUrls[$service], "___custom___")!==false;
-                    $dataCustom = $isCustom ? " data-prompt=\"".htmlspecialchars($this->yellow->language->getText("minishareCustom".ucfirst($service)))."\"" : "";
-                    $links[] = "<a class=\"minishare-".$service."\" href=\"".htmlspecialchars($this->interpolate($shareUrls[$service], $values))."\"".$dataCustom."\">".htmlspecialchars($styling[$service] ?? ucfirst($service))."</a>";
+                    $isCustom = strpos($shareUrls[$service][1], "___instance___")!==false;
+                    $dataCustom = $isCustom ? " data-prompt=\"".htmlspecialchars(str_replace("@service", $shareUrls[$service][0], $this->yellow->language->getText("minishareCustom")))."\"" : "";
+                    $links[] = "<a class=\"minishare-".$service."\" href=\"".htmlspecialchars(strtr($shareUrls[$service][1], $values))."\"".$dataCustom."\">".htmlspecialchars($shareUrls[$service][0])."</a>";
                }
             }
             $output = "<div class=\"minishare\"><strong>".$this->yellow->language->getText("minishareLabel")."</strong> ".implode("<span> | </span>", $links)."</div>\n";
         }
         return $output;
-    }
-
-    // Interpolate string from associative array
-    private function interpolate($string, $values) {
-        $string = str_replace(array_keys($values), $values, $string);
-        return $string;
     }
 
     // Handle page extra data

@@ -1,4 +1,4 @@
-# Minishare 0.9.1
+# Minishare 0.9.2
 
 Social sharing links.
 
@@ -44,33 +44,26 @@ Layout file with sharing links:
 Configuring different sharing services in the settings:
 
 ```
-MinishareServices: facebook, x, linkedin, email
-MinishareServices: mastodon, facebook, x, linkedin, email
+MinishareServices: facebook, x, linkedin, reddit, email
+MinishareServices: mastodon, linkedin, email
 ```
 
 ## Settings
 
 The following settings can be configured in file `system/extensions/yellow-system.ini`:
 
-`MinishareServices` = social sharing services, [supported sharing services](#settings-services)  
-`MinishareXUser` = your X user name, e.g. `@dog_feelings`  
+`MinishareServices` = social sharing services, all lowercase  
 `MinishareStyle` = link style, e.g. `plain`, `squared`, `rounded`  
 
-<a id="settings-services"></a>The following sharing services are supported:
+The following file can be customised:
 
-`email` = share via email  
-`bluesky` = share on [Bluesky](https://bsky.app)  
-`facebook` = share on [Facebook](https://facebook.com)  
-`flipboard` = share on [Flipboard](https://flipboard.com)  
-`linkedin` = share on [LinkedIn](https://linkedin.com)  
-`mastodon` = share on [Mastodon](https://joinmastodon.org)  
-`pinterest` = share on [Pinterest](https://www.pinterest.com)  
-`reddit` = share on [Reddit](https://reddit.com)  
-`telegram` = share on [Telegram](https://telegram.org)  
-`tumblr` = share on [Tumblr](https://tumblr.com)  
-`x` = share on [X](https://x.com)  
-`vk` = share on [VK](https://vk.com)  
-`whatsapp` = share on [Whatsapp](https://whatsapp.com)  
+`system/extensions/minishare.csv` = supported social services  
+
+The following placeholders for social services share links are supported:
+
+`@url` = page URL  
+`@title` = page title  
+`___INSTANCE___` = instance URL for decentralised services  
 
 ## Developer
 
