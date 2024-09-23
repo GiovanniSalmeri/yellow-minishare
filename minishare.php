@@ -40,10 +40,10 @@ class YellowMinishare {
         $output = null;
         if ($name=="minishare" && ($type=="block" || $type=="inline")) {
             $shareUrls = [];
-            $csvLines = file($this->yellow->system->get("coreExtensionDirectory")."minishare.csv");
-            foreach ($csvLines as $csvLine) {
-                if (trim($csvLine)=="") continue;
-                $items = explode(",", $csvLine, 2);
+            $iniLines = file($this->yellow->system->get("coreExtensionDirectory")."minishare.ini");
+            foreach ($iniLines as $iniLine) {
+                if (trim($iniLine)=="" || $iniLine[0]=="#") continue;
+                $items = explode(": ", $iniLine, 2);
                 $shareUrls[strtolower($items[0])] = $items;
             }
             $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));

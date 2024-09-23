@@ -57,13 +57,13 @@ The following settings can be configured in file `system/extensions/yellow-syste
 
 The following file can be customised:
 
-`system/extensions/minishare.csv` = supported social services  
+`system/extensions/minishare.ini` = supported social services  
 
 The following placeholders for social services share links are supported:
 
 `@url` = page URL  
 `@title` = page title  
-`___INSTANCE___` = instance URL for decentralised services  
+`___instance___` = instance URL for decentralised services  
 
 ## Developer
 
