@@ -43,8 +43,9 @@ class YellowMinishare {
             $iniLines = file($this->yellow->system->get("coreExtensionDirectory")."minishare.ini");
             foreach ($iniLines as $iniLine) {
                 if (trim($iniLine)=="" || $iniLine[0]=="#") continue;
-                $items = explode(": ", $iniLine, 2);
-                $shareUrls[strtolower($items[0])] = $items;
+                if (preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $iniLine, $matches)) {
+                    $shareUrls[strtolower($matches[1])] = [ $matches[1], $matches[2] ];
+                }
             }
             $services = preg_split('/\s*,\s*/', $this->yellow->system->get("minishareServices"));
             $values = [
